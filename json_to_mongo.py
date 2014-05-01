@@ -47,8 +47,9 @@ def process_loop(f, n):
       loaded_data.append(load_json(line))
       
     # Write lines to Mongo
-    if len(save_to_mongo(loaded_data, coll)) == 0:
+    if len(save_to_mongo(loaded_data, coll)) < n:
       print("Error while storing data in collection")
+      print(loaded_data)
       break
         
 
