@@ -1,0 +1,7 @@
+
+env = Environment(
+                  CC = 'g++',
+                  CCFLAGS = '-std=c++11'
+                 )
+
+env.Program("jni-objects.out", Glob("*.cpp"))
