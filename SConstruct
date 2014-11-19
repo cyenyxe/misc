@@ -1,2 +1,2 @@
 # Test for communicating C++ objects with Java
-SConscript("jni-objects/SConscript")
+SConscript(dirs = ["jni-objects", "ragel-multi-errors"])
