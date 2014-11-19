@@ -30,3 +30,5 @@
 # NetBeans
 nbproject
 
+/jni-objects/build/
+/jni-objects/dist/

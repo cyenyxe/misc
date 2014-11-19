@@ -1,7 +1,21 @@
+import os
 
-env = Environment(
+# Prepare tools for the environment
+build_tools = Environment()['TOOLS']
+build_tools.append('javah')
+
+# Create environment and copy path from the system
+env = Environment(TOOLS = build_tools,
                   CC = 'g++',
                   CCFLAGS = '-std=c++11'
                  )
+env['ENV']['PATH'] = os.environ['PATH']
 
+# Generate application and libraries using C++ source files
 env.Program("jni-objects.out", Glob("*.cpp"))
+env.Library("vcf.a", "VcfRecord.cpp")
+env.Library("vcf.so", "VcfRecord.cpp")
+
+# Generate Java class and JNI header using Java source files
+classes = env.Java(target = 'classes', source = '.')
+env.JavaH(target = 'native', source = classes)
